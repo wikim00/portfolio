@@ -15,6 +15,9 @@
   --rule:#d9dce6;
   --accent:#2c47c9;
   --accent-soft:#e6eafb;
+  --red:#e01b1b;
+  --red-deep:#b81414;
+  --on-red:#ffffff;
   --display:"Archivo","Helvetica Neue",Arial,sans-serif;
   --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
@@ -44,7 +47,6 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
 .catpic{margin:0;display:grid;gap:8px}
 .catpic img{width:100%;height:auto;border-radius:6px;border:1px solid var(--rule)}
 .catpic figcaption{font-size:13px;color:var(--muted)}
-.yt-stats{font-family:var(--mono);font-size:12px;color:var(--ink)}
 .hero p{max-width:60ch;margin:0;font-size:18px;color:var(--muted)}
 .hero p strong{color:var(--ink);font-weight:600}
 .links{display:flex;flex-wrap:wrap;gap:10px 22px;font-family:var(--mono);font-size:14px}
@@ -87,11 +89,19 @@ dd{margin:0;min-width:0}
 .about{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:32px;align-items:start}
 .prose{display:grid;gap:14px;min-width:0}
 .prose p{margin:0;max-width:62ch}
-.yt{display:grid;gap:6px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px;text-decoration:none;color:var(--ink)}
-.yt strong{font-family:var(--display);font-stretch:112%;font-size:19px}
-.yt-desc{color:var(--muted);font-size:14px}
-.yt-go{font-family:var(--mono);font-size:13px;color:var(--accent);margin-top:6px}
-.yt:hover{border-color:var(--accent)}
+.yt{display:grid;grid-template-columns:auto 1fr;column-gap:14px;row-gap:6px;align-items:center;background:var(--red);border-radius:8px;padding:18px;text-decoration:none;color:var(--on-red);transition:background .15s}
+.yt .play{grid-row:span 2;width:44px;height:44px;border-radius:50%;background:var(--on-red);display:grid;place-items:center}
+.yt .play svg{width:18px;height:18px;fill:var(--red);margin-left:3px}
+.yt .label{color:var(--on-red);opacity:.85}
+.yt strong{font-family:var(--display);font-stretch:112%;font-size:20px;line-height:1.1}
+.yt-desc,.yt-stats,.yt-go{grid-column:1 / -1}
+.yt-desc{font-size:14px;opacity:.92}
+.yt-stats{font-family:var(--mono);font-size:12px}
+.yt-go{font-family:var(--mono);font-size:13px;font-weight:500;margin-top:6px;justify-self:start;background:var(--on-red);color:var(--red-deep);padding:6px 12px;border-radius:999px}
+.yt:hover{background:var(--red-deep)}
+.yt:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.links a.yt-link{color:var(--red);border-color:var(--red);display:inline-flex;align-items:center;gap:6px}
+.yt-link svg{width:10px;height:10px;fill:currentColor}
 @media (max-width:640px){.about{grid-template-columns:1fr}.headshot{width:96px;height:96px}.hero-top{align-items:center}.side{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
 
 footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
@@ -128,7 +138,7 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1p
     <a href="https://github.com/wikim00">github.com/wikim00</a>
     <a href="mailto:wikim00@gmail.com">wikim00@gmail.com</a>
     <a href="https://www.linkedin.com/in/wikim00">LinkedIn</a>
-    <a href="https://www.youtube.com/@kimchiwill">YouTube</a>
+    <a class="yt-link" href="https://www.youtube.com/@kimchiwill"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 0.5 L9.5 5 L1 9.5 Z"/></svg>YouTube</a>
   </nav>
 </header>
 
@@ -244,6 +254,7 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1p
     <div class="side">
     <figure class="catpic"><img src="images/will-cat.jpg" alt="Will holding his black cat" width="560" height="616"><figcaption>Me and my cat, the head of quality assurance.</figcaption></figure>
     <a class="yt" id="youtube" href="https://www.youtube.com/@kimchiwill">
+      <span class="play" aria-hidden="true"><svg viewBox="0 0 10 10"><path d="M1 0.5 L9.5 5 L1 9.5 Z"/></svg></span>
       <span class="label">YouTube</span>
       <strong>@kimchiwill</strong>
       <span class="yt-desc">My hobby channel, where I film whatever I happen to be into. I shoot, edit in Premiere Pro and design my own thumbnails.</span>
