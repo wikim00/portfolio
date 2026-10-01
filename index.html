@@ -37,6 +37,14 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
 .hero .addr{font-family:var(--mono);font-size:13px;color:var(--muted)}
 .hero .addr b{color:var(--accent);font-weight:500}
 .hero h1{font-size:clamp(44px,9vw,84px);font-weight:800;font-stretch:125%;letter-spacing:-.01em}
+.hero-top{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.hero-name{display:grid;gap:20px;min-width:0}
+.headshot{width:148px;height:148px;border-radius:50%;object-fit:cover;border:1px solid var(--rule);flex:none}
+.side{display:grid;gap:16px}
+.catpic{margin:0;display:grid;gap:8px}
+.catpic img{width:100%;height:auto;border-radius:6px;border:1px solid var(--rule)}
+.catpic figcaption{font-size:13px;color:var(--muted)}
+.yt-stats{font-family:var(--mono);font-size:12px;color:var(--ink)}
 .hero p{max-width:60ch;margin:0;font-size:18px;color:var(--muted)}
 .hero p strong{color:var(--ink);font-weight:600}
 .links{display:flex;flex-wrap:wrap;gap:10px 22px;font-family:var(--mono);font-size:14px}
@@ -84,7 +92,7 @@ dd{margin:0;min-width:0}
 .yt-desc{color:var(--muted);font-size:14px}
 .yt-go{font-family:var(--mono);font-size:13px;color:var(--accent);margin-top:6px}
 .yt:hover{border-color:var(--accent)}
-@media (max-width:640px){.about{grid-template-columns:1fr}}
+@media (max-width:640px){.about{grid-template-columns:1fr}.headshot{width:96px;height:96px}.hero-top{align-items:center}.side{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
 
 footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
@@ -108,15 +116,19 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1p
 <div class="wrap">
 
 <header class="hero">
-  <div class="addr">GET /william-kim <b>200 OK</b></div>
-  <h1>William Kim</h1>
-  <p>Software engineer working close to the metal: <strong>distributed systems, networking, and operating systems</strong>. I'm earning an M.S. in Computer Science at Georgia Tech after several years in technical operations and data analysis, where I learned to care about systems that keep running.</p>
+  <div class="hero-top">
+    <div class="hero-name">
+      <div class="addr">GET /william-kim <b>200 OK</b></div>
+      <h1>William Kim</h1>
+    </div>
+    <img class="headshot" src="images/will.jpg" alt="William Kim" width="640" height="640">
+  </div>
+  <p>Software engineer working close to the metal: <strong>distributed systems, networking, and operating systems</strong>. I'm earning an M.S. in Computer Science at Georgia Tech after starting my career in sales and marketing, where I kept drifting toward the technical side of the job.</p>
   <nav class="links" aria-label="Contact">
     <a href="https://github.com/wikim00">github.com/wikim00</a>
     <a href="mailto:wikim00@gmail.com">wikim00@gmail.com</a>
-    <a href="#">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/wikim00">LinkedIn</a>
     <a href="https://www.youtube.com/@kimchiwill">YouTube</a>
-    <a href="#">Résumé (PDF)</a>
   </nav>
 </header>
 
@@ -225,16 +237,20 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1p
   <header><h2 id="about">About me</h2><span class="label">Off the clock</span></header>
   <div class="about">
     <div class="prose">
-      <p>I came to software sideways. I graduated from the University of Southern California with a B.S. in Business Administration, and my first years of work were in technical operations and data analysis, keeping the systems and reports that other people relied on running smoothly. The more time I spent there, the more I wanted to understand what was happening underneath, so I went back to school for computer science and headed straight for the low-level courses.</p>
+      <p>I came to software sideways. I graduated from the University of Southern California with a B.S. in Business Administration, then worked in sales at Gigabyte and marketing at Mora. Those jobs kept pulling me toward the technical side: analyzing client data, setting up the office network, building a livestreaming studio, and earning my CompTIA A+ along the way. Eventually I wanted to understand what was happening underneath, so I went back to school for computer science and headed straight for the low-level courses.</p>
       <p>I still like the bridge between technical work and the people it serves. I'm happiest when I can take something messy, figure out how it actually works, and make it reliable.</p>
-      <p>Outside of coursework I run a home media server on hardware I built myself, cook more than I used to, play Magic: The Gathering badly but enthusiastically, and live with cats who have strong opinions about my keyboard.</p>
+      <p>Outside of coursework I make YouTube videos, run a home media server on hardware I built myself, cook more than I used to, and live with cats who have strong opinions about my keyboard.</p>
     </div>
+    <div class="side">
+    <figure class="catpic"><img src="images/will-cat.jpg" alt="Will holding his black cat" width="560" height="616"><figcaption>Me and my cat, the head of quality assurance.</figcaption></figure>
     <a class="yt" id="youtube" href="https://www.youtube.com/@kimchiwill">
       <span class="label">YouTube</span>
       <strong>@kimchiwill</strong>
-      <span class="yt-desc">My hobby channel, where I film whatever I happen to be into at the moment.</span>
+      <span class="yt-desc">My hobby channel, where I film whatever I happen to be into. I shoot, edit in Premiere Pro and design my own thumbnails.</span>
+      <span class="yt-stats">100K+ views · 400+ subscribers · since 2017</span>
       <span class="yt-go">Watch on YouTube ↗</span>
     </a>
+    </div>
   </div>
 </section>
 
@@ -242,15 +258,18 @@ footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1p
   <header><h2 id="bg">Background</h2><span class="label">Ops → Systems</span></header>
   <div class="two">
     <div class="timeline">
-      <div><span class="when">2025 – now</span><span><b>M.S. Computer Science</b><br>Georgia Tech (OMSCS), systems focus</span></div>
-      <div><span class="when">2021 – 2025</span><span><b>Technical operations &amp; data analysis</b><br>Ran the systems and reporting other teams depended on</span></div>
-      <div><span class="when">2021</span><span><b>B.S. Business Administration</b><br>University of Southern California</span></div>
+      <div><span class="when">2025 – 2028</span><span><b>M.S. Computer Science</b><br>Georgia Tech (OMSCS), expected Dec 2028</span></div>
+      <div><span class="when">2024</span><span><b>Marketing Assistant, Mora</b><br>Content, partnerships and a livestream studio; set up the office network</span></div>
+      <div><span class="when">2024</span><span><b>Inside Sales, Gigabyte</b><br>Managed the Newegg account; used client data to lift retention 10%</span></div>
+      <div><span class="when">2023</span><span><b>CompTIA A+</b><br>Certified IT professional</span></div>
+      <div><span class="when">2018 – 2021</span><span><b>B.S. Business Administration</b><br>University of Southern California</span></div>
     </div>
     <dl>
-      <dt>Languages</dt><dd>C, C++, Python, SQL</dd>
+      <dt>Languages</dt><dd>C, C++, Python, JavaScript, HTML/CSS</dd>
       <dt>Systems</dt><dd>gRPC, POSIX threads &amp; sockets, Linux</dd>
       <dt>Networking</dt><dd>BGP, FRRouting, Mininet, OpenFlow / POX</dd>
-      <dt>Tools</dt><dd>Git, VMware, WSL2, Tailscale, VS Code Remote SSH</dd>
+      <dt>Tools</dt><dd>Git, GitHub, React, AWS S3, WSL2, Tailscale</dd>
+      <dt>Media</dt><dd>Premiere Pro, Photoshop, Figma</dd>
     </dl>
   </div>
 </section>
