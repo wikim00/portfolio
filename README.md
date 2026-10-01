@@ -1,4 +1,5 @@
-Thanks for visiting! 
+# William Kim — Portfolio
 
-This is my portfolio website where I'll be putting up my projects and hosting via AWS.
-This project is built using tailwind and node.js.
+Live at **[willjkim.com](https://willjkim.com)**
+
+A single static page (`index.html`) hosted on GitHub Pages with a custom domain.
