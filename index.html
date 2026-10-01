@@ -1,95 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-    <body>
-        <div class="header">
-            <div class="logo">Header Logo</div>
-            <ul class="links">
-                <li><a href="#home">header link one</a></li>
-                <li><a href="resume.html">header link two</a></li>
-                <li><a href="#projects">header link three</a></li>
-            </ul>
-        </div>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>William Kim</title>
+<meta name="description" content="William Kim — software engineer focused on systems: distributed systems, networking, and operating systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;112,700;125,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single spec-sheet column; each project reads like a protocol header, fields first, story second. */
+:root{
+  --bg:#f3f4f7;
+  --surface:#ffffff;
+  --ink:#141a2b;
+  --muted:#5b6377;
+  --rule:#d9dce6;
+  --accent:#2c47c9;
+  --accent-soft:#e6eafb;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1320;--surface:#161b2c;--ink:#e7eaf3;--muted:#98a0b6;--rule:#2a3149;--accent:#8ea2ff;--accent-soft:#1f2747;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1320;--surface:#161b2c;--ink:#e7eaf3;--muted:#98a0b6;--rule:#2a3149;--accent:#8ea2ff;--accent-soft:#1f2747;color-scheme:dark}
 
-        <div class = "hero">
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:860px;margin:0 auto;padding-inline:20px;padding-block:56px 72px;display:grid;gap:72px}
+a{color:var(--accent);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
-            <div class = "content">
-                This Website is awesome
-                <div class = "subtext">
-                    <a>This website has some subtext that goes here under the main 
-                    title in a smaller font and the color is lower contrast
-                    </a>
-                </div>
+/* Header */
+.hero{display:grid;gap:20px}
+.hero .addr{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.hero .addr b{color:var(--accent);font-weight:500}
+.hero h1{font-size:clamp(44px,9vw,84px);font-weight:800;font-stretch:125%;letter-spacing:-.01em}
+.hero p{max-width:60ch;margin:0;font-size:18px;color:var(--muted)}
+.hero p strong{color:var(--ink);font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:10px 22px;font-family:var(--mono);font-size:14px}
+.links a{text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px}
+.links a:hover{border-color:var(--accent)}
 
-                <div class = "button">
-                    Sign up
-                </div>
-            </div>
+/* Sections */
+section{display:grid;gap:24px}
+section > header{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px}
+section h2{font-size:26px;font-weight:700;font-stretch:112%}
 
-            <div class = "img">
-                this is a place holder for image
-            </div>
-        </div>
+/* Projects as packet headers */
+.projects{display:grid;gap:20px}
+.proj{background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.hdr{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:12.5px}
+.hdr div{padding:8px 12px;border-right:1px solid var(--rule);min-width:0}
+.hdr div:last-child{border-right:0}
+.hdr span{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hdr .ok{color:var(--accent);font-weight:500}
+.body{padding:18px 20px 20px;display:grid;gap:10px;min-width:0}
+.body h3{font-size:21px;font-weight:700;font-stretch:112%}
+.body p{margin:0;max-width:66ch}
+.body ul{margin:0;padding-left:1.1em;display:grid;gap:4px;color:var(--muted)}
+.body ul b{color:var(--ink);font-weight:500}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tags li{list-style:none;font-family:var(--mono);font-size:12px;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:3px}
+.tags{padding:0}
 
-        <div class = "random">
-            
-            <div class = "title">
-                Some random information.
-            </div>
+/* Background / skills */
+.two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.two p{margin:0}
+dl{margin:0;display:grid;grid-template-columns:max-content 1fr;gap:10px 20px}
+dt{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+dd{margin:0;min-width:0}
+.timeline{display:grid;gap:14px}
+.timeline div{display:grid;grid-template-columns:120px 1fr;gap:16px}
+.timeline .when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.timeline b{font-weight:600}
 
-            <div class="cards">
-                <div class="card-container">
-                    <div class="card"></div>
-                    <div class="card-subtext">this is some subtext under an illustration</div>
-                </div>
-                <div class="card-container">
-                    <div class="card"></div>
-                    <div class="card-subtext">this is some subtext under an illustration</div>
-                </div>
-                <div class="card-container">
-                    <div class="card"></div>
-                    <div class="card-subtext">this is some subtext under an illustration</div>
-                </div>
-                <div class="card-container">
-                    <div class="card"></div>
-                    <div class="card-subtext">this is some subtext under an illustration</div>
-                </div>
-            </div>
-            
-        </div>
+.about{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:32px;align-items:start}
+.prose{display:grid;gap:14px;min-width:0}
+.prose p{margin:0;max-width:62ch}
+.yt{display:grid;gap:6px;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px;text-decoration:none;color:var(--ink)}
+.yt strong{font-family:var(--display);font-stretch:112%;font-size:19px}
+.yt-desc{color:var(--muted);font-size:14px}
+.yt-go{font-family:var(--mono);font-size:13px;color:var(--accent);margin-top:6px}
+.yt:hover{border-color:var(--accent)}
+@media (max-width:640px){.about{grid-template-columns:1fr}}
 
-        <div class = "quote">
-            <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-            <div class = "testimonial">
-            This is an inspiring quote or a testimonial from a customer.
-            Maybe it's just filling up space, or maybe people will actually
-            read it. Who Knows? All I know is that it looks nice.
-            </div>
+footer{font-family:var(--mono);font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:20px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
-            <div class = "author">
-                -Thor, God of Thunder
-            </div>
-        </div>
+@media (max-width:640px){
+  .wrap{gap:56px;padding-block:36px 56px}
+  .hdr{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hdr div:nth-child(2){border-right:0}
+  .hdr div:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+  .two{grid-template-columns:1fr}
+  .timeline div{grid-template-columns:1fr;gap:2px}
+  dl{grid-template-columns:1fr;gap:2px 0}
+  dd{margin-bottom:10px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .proj{transition:border-color .15s}
+  .proj:hover{border-color:var(--accent)}
+}
+</style>
+</head><body>
 
-        <div class = "bottom">
-            <div class = "text">
-            Call to action! It's time!
-            <div class = "subtext">
-                Sign up for our product by clicking that button right over there!
-            </div>
-            </div>
-            <div class = "buttona">
-                Sign up
-            </div>
-        </div>
+<div class="wrap">
 
-        <div class = "footer">
-            <div class = "copyright">
-                Copyright &copy; The Odin Project 2025;
-    </body>
-</html>
+<header class="hero">
+  <div class="addr">GET /william-kim <b>200 OK</b></div>
+  <h1>William Kim</h1>
+  <p>Software engineer working close to the metal: <strong>distributed systems, networking, and operating systems</strong>. I'm earning an M.S. in Computer Science at Georgia Tech after several years in technical operations and data analysis, where I learned to care about systems that keep running.</p>
+  <nav class="links" aria-label="Contact">
+    <a href="https://github.com/wikim00">github.com/wikim00</a>
+    <a href="mailto:wikim00@gmail.com">wikim00@gmail.com</a>
+    <a href="#">LinkedIn</a>
+    <a href="https://www.youtube.com/@kimchiwill">YouTube</a>
+    <a href="#">Résumé (PDF)</a>
+  </nav>
+</header>
+
+<section aria-labelledby="work">
+  <header><h2 id="work">Selected work</h2><span class="label">Georgia Tech OMSCS</span></header>
+  <div class="projects">
+
+    <article class="proj">
+      <div class="hdr">
+        <div><span>Lang</span>C++</div>
+        <div><span>Transport</span>gRPC</div>
+        <div><span>Course</span>CS 6200</div>
+        <div><span>Status</span><b class="ok">All tests pass</b></div>
+      </div>
+      <div class="body">
+        <h3>Distributed file system</h3>
+        <p>A client–server file system where multiple clients stay in sync with a central store over gRPC, built against gRPC compiled from source.</p>
+        <ul>
+          <li><b>Five RPCs</b> for fetch, store, list, stat and delete, with streaming for large files</li>
+          <li><b>Write locks</b> so concurrent clients can't clobber each other's changes</li>
+          <li><b>CRC32 checksums</b> to skip transferring files the other side already has</li>
+          <li><b>Async callbacks</b> that push server-side changes to every connected client</li>
+          <li>Tracked down a static-initialization segfault and fixed it with an explicit library initializer</li>
+        </ul>
+        <ul class="tags"><li>C++</li><li>gRPC</li><li>Protocol Buffers</li><li>concurrency</li></ul>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="hdr">
+        <div><span>Lang</span>C</div>
+        <div><span>Transport</span>TCP sockets</div>
+        <div><span>Course</span>CS 6200</div>
+        <div><span>Status</span><b class="ok">All tests pass</b></div>
+      </div>
+      <div class="body">
+        <h3>Multithreaded file server</h3>
+        <p>A boss–worker file server and client speaking a custom GetFile protocol, written in C. My first C project, taken from zero to passing every autograder case.</p>
+        <ul>
+          <li><b>Thread pool</b> with a shared work queue guarded by mutexes and condition variables</li>
+          <li><b>pread()</b> for thread-safe concurrent reads of the same file</li>
+          <li>Handled <b>SIGPIPE</b> and partial sends so a dropped client never takes the server down</li>
+        </ul>
+        <ul class="tags"><li>C</li><li>pthreads</li><li>POSIX sockets</li></ul>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="hdr">
+        <div><span>Topology</span>6 ASes</div>
+        <div><span>Routing</span>BGP / FRR</div>
+        <div><span>Course</span>CS 6250</div>
+        <div><span>Status</span><b class="ok">Verified live</b></div>
+      </div>
+      <div class="body">
+        <h3>BGP prefix hijacking</h3>
+        <p>Built a six-autonomous-system network in Mininet running FRRouting, then demonstrated how a rogue AS can hijack traffic by announcing a more attractive route.</p>
+        <ul>
+          <li><b>Peer-only hijack</b> where a neighboring AS draws traffic away from the legitimate origin</li>
+          <li><b>Full-core hijack</b> using eBGP multihop sessions to reach beyond direct neighbors</li>
+          <li>Confirmed both attacks against live traffic, not just routing tables</li>
+        </ul>
+        <ul class="tags"><li>Mininet</li><li>FRRouting</li><li>BGP</li><li>Linux networking</li></ul>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="hdr">
+        <div><span>Lang</span>Python</div>
+        <div><span>Controller</span>POX</div>
+        <div><span>Course</span>CS 6250</div>
+        <div><span>Status</span><b class="ok">86 / 86 tests</b></div>
+      </div>
+      <div class="body">
+        <h3>SDN firewall</h3>
+        <p>A software-defined firewall that turns a policy file into OpenFlow rules pushed to switches by a POX controller.</p>
+        <ul>
+          <li><b>24-rule policy</b> covering CIDR ranges, protocols and port-level filtering</li>
+          <li>Passed both the standard (86/86) and alternate (45/45) test suites</li>
+        </ul>
+        <ul class="tags"><li>Python</li><li>OpenFlow</li><li>SDN</li></ul>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="hdr">
+        <div><span>Lang</span>Python</div>
+        <div><span>Data</span>RIPE RIS</div>
+        <div><span>Course</span>CS 6250</div>
+        <div><span>Status</span><b class="ok">All tasks pass</b></div>
+      </div>
+      <div class="body">
+        <h3>Internet routing measurements</h3>
+        <p>Analyzed real BGP update and RIB dumps from public route collectors with pybgpstream: prefix growth, AS path lengths, routing churn and short-lived announcements.</p>
+        <ul>
+          <li>Added a <b>shared parse cache</b> so six analyses reuse one pass over the dumps instead of six</li>
+        </ul>
+        <ul class="tags"><li>Python</li><li>pybgpstream</li><li>data analysis</li></ul>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section aria-labelledby="about">
+  <header><h2 id="about">About me</h2><span class="label">Off the clock</span></header>
+  <div class="about">
+    <div class="prose">
+      <p>I came to software sideways. I graduated from the University of Southern California with a B.S. in Business Administration, and my first years of work were in technical operations and data analysis, keeping the systems and reports that other people relied on running smoothly. The more time I spent there, the more I wanted to understand what was happening underneath, so I went back to school for computer science and headed straight for the low-level courses.</p>
+      <p>I still like the bridge between technical work and the people it serves. I'm happiest when I can take something messy, figure out how it actually works, and make it reliable.</p>
+      <p>Outside of coursework I run a home media server on hardware I built myself, cook more than I used to, play Magic: The Gathering badly but enthusiastically, and live with cats who have strong opinions about my keyboard.</p>
+    </div>
+    <a class="yt" id="youtube" href="https://www.youtube.com/@kimchiwill">
+      <span class="label">YouTube</span>
+      <strong>@kimchiwill</strong>
+      <span class="yt-desc">My hobby channel, where I film whatever I happen to be into at the moment.</span>
+      <span class="yt-go">Watch on YouTube ↗</span>
+    </a>
+  </div>
+</section>
+
+<section aria-labelledby="bg">
+  <header><h2 id="bg">Background</h2><span class="label">Ops → Systems</span></header>
+  <div class="two">
+    <div class="timeline">
+      <div><span class="when">2025 – now</span><span><b>M.S. Computer Science</b><br>Georgia Tech (OMSCS), systems focus</span></div>
+      <div><span class="when">2021 – 2025</span><span><b>Technical operations &amp; data analysis</b><br>Ran the systems and reporting other teams depended on</span></div>
+      <div><span class="when">2021</span><span><b>B.S. Business Administration</b><br>University of Southern California</span></div>
+    </div>
+    <dl>
+      <dt>Languages</dt><dd>C, C++, Python, SQL</dd>
+      <dt>Systems</dt><dd>gRPC, POSIX threads &amp; sockets, Linux</dd>
+      <dt>Networking</dt><dd>BGP, FRRouting, Mininet, OpenFlow / POX</dd>
+      <dt>Tools</dt><dd>Git, VMware, WSL2, Tailscale, VS Code Remote SSH</dd>
+    </dl>
+  </div>
+</section>
+
+<footer>
+  <span>William Kim · Southern California</span>
+  <span>Open to software engineering roles</span>
+</footer>
+
+</div>
+</body></html>
